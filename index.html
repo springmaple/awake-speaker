@@ -1,0 +1,28 @@
+<html lang="en">
+<head>
+    <title>Awake Speaker</title>
+</head>
+<body>
+<button onclick="startPlaySound()">Play Sound</button>
+<script>
+    function playSound() {
+        let context = new (window.AudioContext || window.webkitAudioContext)();
+        let osc = context.createOscillator();
+        osc.type = 'square';
+        osc.frequency.value = 22000;
+        osc.connect(context.destination);
+        osc.start();
+        setTimeout(function () {
+            osc.stop();
+        }, 50);
+    }
+
+    function startPlaySound() {
+        setInterval(function () {
+            playSound();
+        }, 1000)
+    }
+
+</script>
+</body>
+</html>
